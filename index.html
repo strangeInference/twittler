@@ -25,12 +25,13 @@
         }
         $('button').on('click', function(){
           index = streams.home.length - 1;
-          for (var i = oldIndex; i < index; i++){
+          for (var i = oldIndex + 1; i < index; i++){
             var tweet = streams.home[i];
             var $tweet = $('<div></div>');
             $tweet.text('@' + tweet.user + ': ' + tweet.message + ' ' + tweet.created_at);
             $tweet.prependTo($body);
           }
+          oldIndex = index;
           $(this).prependTo($body);
         });
 
