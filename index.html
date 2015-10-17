@@ -12,23 +12,29 @@
       $(document).ready(function(){
         var $body = $('body');
         $body.html('');
-        $('<button>More Tweets</button>').appendTo($body);
+        $('<button class="new">More Tweets</button>').appendTo($body);
 
         var index = streams.home.length - 1;
         var oldIndex = index;
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message + ' ' + tweet.created_at);
+          var $userName = $('<button class="usr"></button>').text('@' + tweet.user);
+          $tweet.text(': ' + tweet.message + ' ' + tweet.created_at);
+          $userName.prependTo($tweet);
           $tweet.appendTo($body);
           index -= 1;
         }
-        $('button').on('click', function(){
+
+        //adds new tweets on click
+        $('.new').on('click', function(){
           index = streams.home.length - 1;
           for (var i = oldIndex + 1; i < index; i++){
             var tweet = streams.home[i];
             var $tweet = $('<div></div>');
-            $tweet.text('@' + tweet.user + ': ' + tweet.message + ' ' + tweet.created_at);
+            var $userName = $('<button class="usr"></button>').text('@' + tweet.user);
+            $tweet.text(': ' + tweet.message + ' ' + tweet.created_at);
+            $userName.prependTo($tweet);
             $tweet.prependTo($body);
           }
           oldIndex = index;
