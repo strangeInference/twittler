@@ -31,7 +31,8 @@
           for (var i = oldIndex + 1; i < index; i++){
             var tweet = streams.home[i];
             var $tweet = $('<div></div>');
-            var $userName = $('<button class="usr"></button>').text("@" + tweet.user);
+            var $userName = $('<button class="usr"></button>')
+              .text("@" + tweet.user);
             $tweet.text(': ' + tweet.message + ' ' + tweet.created_at);
             $userName.prependTo($tweet);
             $tweet.prependTo($body);
@@ -40,16 +41,24 @@
           $(this).prependTo($body);
         });
 
+          //opens username history on click 
         $('.usr').on('click', function(){
-          var name = $(this).text();
-          name = name.slice(1);
-          for (var i = 0; i < streams.users[name].length; i++){
-            var tweet = streams.users[name][i];
-            var $tweet = $('<div></div>')
-            $tweet.text('@' + tweet.user + ": " + tweet.message + ' ' + tweet.created_at);
-            $(this).closest('div').append($tweet);
-          }
-        })
+          $(this).text('cliked');
+          /*if($(this).hasClass('open')){
+            $(this).closest('div').find('.hist').remove();
+            $(this).removeClass('open');
+          } else {
+            var name = $(this).text();
+            name = name.slice(1);
+            $(this).addClass('open');
+            for (var i = 0; i < streams.users[name].length; i++){
+              var tweet = streams.users[name][i];
+              var $tweet = $('<div class="hist"></div>')
+              $tweet.text('@' + tweet.user + ": " + tweet.message + ' ' + tweet.created_at);
+              $(this).closest('div').append($tweet);
+            }
+          }*/
+        });
 
 
       });
