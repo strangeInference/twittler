@@ -42,22 +42,22 @@
         });
 
           //opens username history on click 
-        $('.usr').on('click', function(){
-          $(this).text('cliked');
-          /*if($(this).hasClass('open')){
+        $(document).on('click', '.usr', function(){
+          //$(this).text('cliked');
+          if($(this).hasClass('open')){
             $(this).closest('div').find('.hist').remove();
             $(this).removeClass('open');
           } else {
             var name = $(this).text();
             name = name.slice(1);
             $(this).addClass('open');
-            for (var i = 0; i < streams.users[name].length; i++){
+            for (var i = streams.users[name].length - 1; i >= 0; i--){
               var tweet = streams.users[name][i];
               var $tweet = $('<div class="hist"></div>')
               $tweet.text('@' + tweet.user + ": " + tweet.message + ' ' + tweet.created_at);
               $(this).closest('div').append($tweet);
             }
-          }*/
+          }
         });
 
 
